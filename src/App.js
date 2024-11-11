@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from './actions/counterActions';
 
 function App() {
+  const counter = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
+
+  const [value, setValue] = useState(0);
+  const [amount, setAmount] = useState(1);
+
+  const handleValueChange = (e) => {
+    setValue(parseInt(e.target.value));
+  };
+
+  const handleAmountChange = (e) => {
+    setAmount(parseInt(e.target.value));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Counter {counter}</h1>
+      <input
+        type="number"
+        value={amount}
+        onChange={handleAmountChange}
+        placeholder="Enter amount"
+      />
+      <button onClick={() => dispatch(increment(amount))}>Increment</button>
+      <button onClick={() => dispatch(decrement(amount))}>Decrement</button>
     </div>
   );
 }
