@@ -6,12 +6,7 @@ function App() {
   const counter = useSelector((state) => state.counter);
   const dispatch = useDispatch();
 
-  const [value, setValue] = useState(0);
   const [amount, setAmount] = useState(1);
-
-  const handleValueChange = (e) => {
-    setValue(parseInt(e.target.value));
-  };
 
   const handleAmountChange = (e) => {
     setAmount(parseInt(e.target.value));
